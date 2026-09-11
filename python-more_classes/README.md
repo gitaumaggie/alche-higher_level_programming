@@ -1,0 +1,3 @@
+# Python - More Classes and Objects
+
+This project introduces deeper Object-Oriented Programming concepts in Pythoni. By performing several tasks related to classes and objects one is able to  learn how to create and use classes and objects, work with attributes and methods, and understand public, protected, and private data. One is able to also practice properties, class and instance attributes, class methods, static methods, special methods such as `__str__` and `__repr__`, and attribute lookup. These exercises will strengthen  understanding of encapsulation, abstraction, object behavior, and how Python manages objects and classes.
