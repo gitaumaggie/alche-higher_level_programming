@@ -1,0 +1,3 @@
+# Python - Inheritance
+
+This project introduces inheritance in Python and explains how classes can reuse attributes and methods from other classes. It covers parent classes, child classes, method overriding, multiple inheritance, and the use of super(). The project also explores Python’s object model through functions such as type(), isinstance(), issubclass(), and dir(). Through practical exercises, one is able to learn how inheritance supports code reuse and understand how attributes and methods become available to subclasses through their class hierarchy while writing clean, readable, and PEP8-compliant Python code.
