@@ -1,0 +1,3 @@
+# Python - Network #1
+
+This project introduces Python networking concepts using urllib and the requests package. The tasks focus on fetching resources from web servers, sending HTTP requests, handling response bodies, decoding data, retrieving JSON, and manipulating information received from external services. Through practical scripts, the project develops an understanding of HTTP communication and API interaction. It also reinforces Python programming practices, including documentation, PEP 8 style, executable files, dictionary access with get, and preventing code from running automatically when a module is imported.
