@@ -1,0 +1,3 @@
+# Python – Almost a Circle
+This project represents another step in my journey toward becoming a proficient Python developer. Through Almost a Circle, I will strengthen my understanding of object-oriented programming, inheritance, exception handling, and file operations. I will explore unit testing, serialization, deserialization, JSON, and flexible function arguments. My goal is to develop reliable, maintainable, and well-documented software while applying test-driven development principles. This project will also prepare me for more complex applications, including the AirBnB project, and strengthen my confidence in solving practical programming challenges through continuous learning.
+i
