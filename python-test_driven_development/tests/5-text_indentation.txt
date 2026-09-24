@@ -1,0 +1,140 @@
+
+========================
+Text indentation
+========================
+
+This module tests a function that prints two newline characters
+after periods, question marks and colons. It also removes spaces
+at the beginning and end of each printed line.
+
+Import the function:
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test an ordinary sentence:
+
+>>> text_indentation("Hello. How are you?")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+
+Test all three punctuation marks:
+
+>>> text_indentation("Hello. How are you? I am fine: Thank you.")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I am fine:
+<BLANKLINE>
+Thank you.
+<BLANKLINE>
+
+Test a sentence without punctuation:
+
+>>> text_indentation("Hello world")
+Hello world
+
+Test leading and trailing spaces:
+
+>>> text_indentation("   Hello world   ")
+Hello world
+
+Test spaces following punctuation:
+
+>>> text_indentation("Hello.    World")
+Hello.
+<BLANKLINE>
+World
+
+Test consecutive punctuation marks:
+
+>>> text_indentation("Hello...World")
+Hello.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+World
+
+Test a question mark:
+
+>>> text_indentation("Are you ready?Yes")
+Are you ready?
+<BLANKLINE>
+Yes
+
+Test a colon:
+
+>>> text_indentation("Name: Margaret")
+Name:
+<BLANKLINE>
+Margaret
+
+Test an empty string:
+
+>>> text_indentation("")
+
+Test a string containing only spaces:
+
+>>> text_indentation("    ")
+
+Test a single punctuation mark:
+
+>>> text_indentation(".")
+.
+<BLANKLINE>
+
+Test multiple punctuation marks:
+
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+
+Test a numeric argument:
+
+>>> text_indentation(123)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Test None:
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Test a list:
+
+>>> text_indentation(["Hello", "world"])
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Test a dictionary:
+
+>>> text_indentation({"text": "Hello"})
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Test a boolean:
+
+>>> text_indentation(True)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+Test a missing argument:
+
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
