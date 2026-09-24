@@ -1,7 +1,8 @@
 
 #!/usr/bin/python3
 """Provide unit tests for the Rectangle class."""
-
+from io import StringIO
+from contextlib import redirect_stdout
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -111,6 +112,174 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rectangle.height, 6)
         self.assertEqual(rectangle.x, 3)
         self.assertEqual(rectangle.y, 4)
+
+
+        
+    def test_area(self):
+        """Verify that area returns width multiplied by height."""
+        rectangle = Rectangle(4, 3)
+        self.assertEqual(rectangle.area(), 12)
+
+    def test_string_representation(self):
+        """Verify the formatted string representation."""
+        rectangle = Rectangle(4, 3, 2, 1, 89)
+        self.assertEqual(
+            str(rectangle),
+            "[Rectangle] (89) 2/1 - 4/3"
+        )
+
+    def test_display_without_offsets(self):
+        """Verify display without horizontal or vertical offsets."""
+        rectangle = Rectangle(3, 2)
+        output = StringIO()
+
+        with redirect_stdout(output):
+            rectangle.display()
+
+        self.assertEqual(output.getvalue(), "###\n###\n")
+
+    def test_display_with_x(self):
+        """Verify display with a horizontal offset."""
+        rectangle = Rectangle(3, 2, 2)
+        output = StringIO()
+
+        with redirect_stdout(output):
+            rectangle.display()
+
+        self.assertEqual(output.getvalue(), "  ###\n  ###\n")
+
+    def test_display_with_x_and_y(self):
+        """Verify display with both coordinate offsets."""
+        rectangle = Rectangle(3, 2, 2, 1)
+        output = StringIO()
+
+        with redirect_stdout(output):
+            rectangle.display()
+
+        self.assertEqual(
+            output.getvalue(),
+            "\n  ###\n  ###\n"
+        )
+
+    def test_to_dictionary(self):
+        """Verify that rectangle attributes are converted to a dict."""
+        rectangle = Rectangle(4, 3, 2, 1, 89)
+
+        self.assertEqual(
+            rectangle.to_dictionary(),
+            {
+                "id": 89,
+                "width": 4,
+                "height": 3,
+                "x": 2,
+                "y": 1
+            }
+        )
+
+    def test_update_without_arguments(self):
+        """Verify that an empty update leaves attributes unchanged."""
+        rectangle = Rectangle(4, 3, 2, 1, 89)
+        rectangle.update()
+
+        self.assertEqual(
+            rectangle.to_dictionary(),
+            {
+                "id": 89,
+                "width": 4,
+                "height": 3,
+                "x": 2,
+                "y": 1
+            }
+        )
+
+    def test_update_id(self):
+        """Verify updating the ID using one positional argument."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(89)
+        self.assertEqual(rectangle.id, 89)
+
+    def test_update_id_width(self):
+        """Verify updating the ID and width."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(89, 1)
+        self.assertEqual((rectangle.id, rectangle.width), (89, 1))
+
+    def test_update_id_width_height(self):
+        """Verify updating the first three attributes."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(89, 1, 2)
+
+        self.assertEqual(
+            (rectangle.id, rectangle.width, rectangle.height),
+            (89, 1, 2)
+        )
+
+    def test_update_four_arguments(self):
+        """Verify updating the ID, width, height and x."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(89, 1, 2, 3)
+
+        self.assertEqual(
+            (rectangle.id, rectangle.width, rectangle.height, rectangle.x),
+            (89, 1, 2, 3)
+        )
+
+    def test_update_five_arguments(self):
+        """Verify updating all five attributes."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(89, 1, 2, 3, 4)
+
+        self.assertEqual(
+            rectangle.to_dictionary(),
+            {"id": 89, "width": 1, "height": 2, "x": 3, "y": 4}
+        )
+
+    def test_update_keyword_id(self):
+        """Verify updating the ID using a keyword argument."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(**{"id": 89})
+        self.assertEqual(rectangle.id, 89)
+
+    def test_update_keyword_id_width(self):
+        """Verify updating the ID and width using keywords."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(**{"id": 89, "width": 1})
+
+        self.assertEqual((rectangle.id, rectangle.width), (89, 1))
+
+    def test_update_keyword_three_attributes(self):
+        """Verify updating three attributes using keywords."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(**{"id": 89, "width": 1, "height": 2})
+
+        self.assertEqual(
+            (rectangle.id, rectangle.width, rectangle.height),
+            (89, 1, 2)
+        )
+
+    def test_update_keyword_four_attributes(self):
+        """Verify updating four attributes using keywords."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(
+            **{"id": 89, "width": 1, "height": 2, "x": 3}
+        )
+
+        self.assertEqual(
+            (rectangle.id, rectangle.width, rectangle.height, rectangle.x),
+            (89, 1, 2, 3)
+        )
+
+    def test_update_keyword_five_attributes(self):
+        """Verify updating all attributes using keywords."""
+        rectangle = Rectangle(4, 3, 2, 1, 5)
+        rectangle.update(
+            **{"id": 89, "width": 1, "height": 2, "x": 3, "y": 4}
+        )
+
+        self.assertEqual(
+            rectangle.to_dictionary(),
+            {"id": 89, "width": 1, "height": 2, "x": 3, "y": 4}
+        )
 
 
 if __name__ == "__main__":

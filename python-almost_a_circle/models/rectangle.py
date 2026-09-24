@@ -71,3 +71,44 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+
+    def area(self):
+        """Return the area of the rectangle."""
+        return self.width * self.height
+
+    def display(self):
+        """Print the rectangle using # and its coordinates."""
+        for _ in range(self.y):
+            print()
+
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """Return the rectangle's formatted string representation."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height
+        )
+
+    def update(self, *args, **kwargs):
+        """Update the rectangle using positional or keyword arguments."""
+        attributes = ("id", "width", "height", "x", "y")
+
+        if args:
+            for name, value in zip(attributes, args):
+                setattr(self, name, value)
+        else:
+            for name, value in kwargs.items():
+                if name in attributes:
+                    setattr(self, name, value)
+
+    def to_dictionary(self):
+        """Return a dictionary containing the rectangle's attributes."""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
