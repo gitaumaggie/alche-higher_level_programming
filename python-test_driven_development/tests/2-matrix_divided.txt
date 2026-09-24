@@ -110,3 +110,64 @@ Reject a matrix containing an empty row:
 Traceback (most recent call last):
 ...
 TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+Divide a matrix by positive infinity:
+
+>>> matrix_divided([[1, 2], [3, 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+Divide a matrix by negative infinity:
+
+>>> matrix_divided([[1, 2], [3, 4]], float('-inf'))
+[[-0.0, -0.0], [-0.0, -0.0]]
+
+A matrix containing infinity:
+
+>>> matrix_divided([[1, float('inf')], [3, 4]], 2)
+[[0.5, inf], [1.5, 2.0]]
+
+A matrix containing NaN:
+
+>>> result = matrix_divided([[1, float('nan')]], 2)
+>>> result[0][0]
+0.5
+>>> result[0][1] != result[0][1]
+True
+
+Infinity divided by infinity produces NaN:
+
+>>> result = matrix_divided([[float('inf'), 2]], float('inf'))
+>>> result[0][0] != result[0][0]
+True
+>>> result[0][1]
+0.0
+
+NaN in the matrix with an infinite divisor:
+
+>>> result = matrix_divided([[float('nan'), 2]], float('inf'))
+>>> result[0][0] != result[0][0]
+True
+>>> result[0][1]
+0.0
+
+A NaN divisor:
+
+>>> result = matrix_divided([[1, 2], [3, 4]], float('nan'))
+>>> all(value != value for row in result for value in row)
+True
+
+Missing the divisor argument:
+
+>>> matrix_divided([[1, 2]])
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+Missing both arguments:
+
+>>> matrix_divided()
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+

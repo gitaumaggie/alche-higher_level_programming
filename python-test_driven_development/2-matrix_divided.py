@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Provide a function for dividing every element of a numeric matrix.
 
@@ -8,19 +7,10 @@ matrix containing the results rounded to two decimal places.
 
 
 def matrix_divided(matrix, div):
-    """Divide all matrix elements by div and return a new matrix.
+    """Divide every element of a numeric matrix by div.
 
-    Args:
-        matrix: A non-empty list of equally sized lists of numbers.
-        div: An integer or float used to divide each element.
-
-    Returns:
-        A new matrix with every result rounded to two decimal places.
-
-    Raises:
-        TypeError: If the matrix or divisor has an invalid type,
-            or if the matrix rows have different lengths.
-        ZeroDivisionError: If the divisor is zero.
+    Return a new matrix containing the rounded results without
+    modifying the original matrix.
     """
     error = "matrix must be a matrix (list of lists) of integers/floats"
 
