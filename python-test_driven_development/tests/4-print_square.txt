@@ -1,0 +1,119 @@
+
+========================
+Print square
+========================
+
+This module prints a square using the # character.
+The size must be a non-negative integer.
+
+Import the function:
+
+>>> print_square = __import__('4-print_square').print_square
+
+Print a square of size four:
+
+>>> print_square(4)
+####
+####
+####
+####
+
+Print a square of size three:
+
+>>> print_square(3)
+###
+###
+###
+
+Print a square of size one:
+
+>>> print_square(1)
+#
+
+A square of size zero produces no output:
+
+>>> print_square(0)
+
+Reject a negative integer:
+
+>>> print_square(-1)
+Traceback (most recent call last):
+...
+ValueError: size must be >= 0
+
+Reject a negative float:
+
+>>> print_square(-2.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a positive float:
+
+>>> print_square(2.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject zero as a float:
+
+>>> print_square(0.0)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a string:
+
+>>> print_square("3")
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject None:
+
+>>> print_square(None)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a list:
+
+>>> print_square([3])
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a dictionary:
+
+>>> print_square({"size": 3})
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a boolean:
+
+>>> print_square(True)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject negative infinity:
+
+>>> print_square(float('-inf'))
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject NaN:
+
+>>> print_square(float('nan'))
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Reject a missing argument:
+
+>>> print_square()
+Traceback (most recent call last):
+...
+TypeError: print_square() missing 1 required positional argument: 'size'
