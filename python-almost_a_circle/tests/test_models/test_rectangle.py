@@ -1,6 +1,8 @@
 
 #!/usr/bin/python3
 """Provide unit tests for the Rectangle class."""
+import os
+import tempfile
 from io import StringIO
 from contextlib import redirect_stdout
 import unittest
@@ -281,6 +283,117 @@ class TestRectangle(unittest.TestCase):
             {"id": 89, "width": 1, "height": 2, "x": 3, "y": 4}
         )
 
+        
+    def test_create_with_id(self):
+        """Create a rectangle with an explicit ID."""
+        rectangle = Rectangle.create(id=89)
+        self.assertEqual(rectangle.id, 89)
+
+    def test_create_with_width(self):
+        """Create a rectangle with an updated width."""
+        rectangle = Rectangle.create(id=89, width=4)
+        self.assertEqual(rectangle.width, 4)
+
+    def test_create_with_height(self):
+        """Create a rectangle with updated dimensions."""
+        rectangle = Rectangle.create(id=89, width=4, height=3)
+        self.assertEqual(rectangle.height, 3)
+
+    def test_create_with_x(self):
+        """Create a rectangle with a horizontal offset."""
+        rectangle = Rectangle.create(
+            id=89, width=4, height=3, x=2
+        )
+        self.assertEqual(rectangle.x, 2)
+
+    def test_create_with_all_attributes(self):
+        """Create a rectangle with all its attributes."""
+        rectangle = Rectangle.create(
+            id=89, width=4, height=3, x=2, y=1
+        )
+
+        self.assertEqual(
+            rectangle.to_dictionary(),
+            {"id": 89, "width": 4, "height": 3, "x": 2, "y": 1}
+        )
+
+
+    def test_save_to_file_none(self):
+        """Save None as an empty JSON list."""
+        with tempfile.TemporaryDirectory() as directory:
+            previous = os.getcwd()
+            try:
+                os.chdir(directory)
+                Rectangle.save_to_file(None)
+
+                with open("Rectangle.json", encoding="utf-8") as file:
+                    self.assertEqual(file.read(), "[]")
+            finally:
+                os.chdir(previous)
+
+    def test_save_to_file_empty_list(self):
+        """Save an empty list to a JSON file."""
+        with tempfile.TemporaryDirectory() as directory:
+            previous = os.getcwd()
+            try:
+                os.chdir(directory)
+                Rectangle.save_to_file([])
+
+                with open("Rectangle.json", encoding="utf-8") as file:
+                    self.assertEqual(file.read(), "[]")
+            finally:
+                os.chdir(previous)
+
+    def test_save_to_file_rectangle(self):
+        """Save a rectangle to a JSON file."""
+        with tempfile.TemporaryDirectory() as directory:
+            previous = os.getcwd()
+            try:
+                os.chdir(directory)
+                rectangle = Rectangle(4, 3, 2, 1, 89)
+                Rectangle.save_to_file([rectangle])
+
+                with open("Rectangle.json", encoding="utf-8") as file:
+                    data = Base.from_json_string(file.read())
+
+                self.assertEqual(
+                    data,
+                    [{"id": 89, "width": 4, "height": 3,
+                      "x": 2, "y": 1}]
+                )
+            finally:
+                os.chdir(previous)
+
+    def test_load_from_missing_file(self):
+        """Return an empty list when no JSON file exists."""
+        with tempfile.TemporaryDirectory() as directory:
+            previous = os.getcwd()
+            try:
+                os.chdir(directory)
+                self.assertEqual(Rectangle.load_from_file(), [])
+            finally:
+                os.chdir(previous)
+
+    def test_load_from_existing_file(self):
+        """Reconstruct rectangles from an existing JSON file."""
+        with tempfile.TemporaryDirectory() as directory:
+            previous = os.getcwd()
+            try:
+                os.chdir(directory)
+
+                original = Rectangle(4, 3, 2, 1, 89)
+                Rectangle.save_to_file([original])
+                loaded = Rectangle.load_from_file()
+
+                self.assertEqual(len(loaded), 1)
+                self.assertIsInstance(loaded[0], Rectangle)
+                self.assertIsNot(loaded[0], original)
+                self.assertEqual(
+                    loaded[0].to_dictionary(),
+                    original.to_dictionary()
+                )
+            finally:
+                os.chdir(previous)
 
 if __name__ == "__main__":
     unittest.main()
