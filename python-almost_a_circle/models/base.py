@@ -31,7 +31,6 @@ class Base:
             return []
         return json.loads(json_string)
 
-    
     @classmethod
     def create(cls, **dictionary):
         """Create an instance with attributes from a dictionary."""
