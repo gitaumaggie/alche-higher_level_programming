@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Define a Rectangle class that inherits from Base."""
 
