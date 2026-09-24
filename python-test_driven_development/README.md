@@ -1,0 +1,3 @@
+# Python - Test-driven development
+
+This project introduces me to Test-Driven Development in Python, where I learn to think about expected behavior and edge cases before implementing code. As a Software Engineering student, I am using this project to strengthen my ability to write reliable and maintainable programs. I will practice creating meaningful documentation, writing doctest test cases, identifying valid and invalid inputs, handling exceptions, and checking boundary conditions. The project also helps me develop a disciplined programming workflow by designing tests before implementation. Through these tasks, I am learning that testing is not only about finding errors, but also about understanding and defining how my code should behave.
