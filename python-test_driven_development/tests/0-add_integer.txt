@@ -1,0 +1,66 @@
+==============================
+0. Integers addition
+==============================
+
+The ``add_integer`` function adds two integers or floats and returns
+the result as an integer.
+
+First, we can add two positive integers:
+
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(1, 2)
+3
+
+We can add a positive and a negative integer:
+
+>>> add_integer(100, -2)
+98
+
+If only ``a`` is provided, ``b`` defaults to 98:
+
+>>> add_integer(2)
+100
+
+Floats are cast to integers before the addition:
+
+>>> add_integer(100.3, -2)
+98
+
+Both arguments can be floats:
+
+>>> add_integer(1.9, 2.9)
+3
+
+Negative numbers can also be added:
+
+>>> add_integer(-5, -3)
+-8
+
+Zero can be used as an argument:
+
+>>> add_integer(0, 0)
+0
+
+If ``a`` is not an integer or float, a TypeError is raised:
+
+>>> add_integer("School", 2)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+>>> add_integer(None, 2)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+If ``b`` is not an integer or float, a TypeError is raised:
+
+>>> add_integer(2, "School")
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+>>> add_integer(2, None)
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
