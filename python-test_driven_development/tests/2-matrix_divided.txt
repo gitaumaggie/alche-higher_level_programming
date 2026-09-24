@@ -1,0 +1,112 @@
+
+================================
+Divide a matrix
+================================
+
+This module divides every element of a matrix by a number.
+The results are rounded to two decimal places.
+
+Import the function:
+
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Divide a matrix of integers:
+
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+Divide a matrix containing floats:
+
+>>> matrix_divided([[1.5, 2.5], [3.5, 4.5]], 2)
+[[0.75, 1.25], [1.75, 2.25]]
+
+Divide by a negative number:
+
+>>> matrix_divided([[2, 4], [6, 8]], -2)
+[[-1.0, -2.0], [-3.0, -4.0]]
+
+Divide by a float:
+
+>>> matrix_divided([[3, 6]], 1.5)
+[[2.0, 4.0]]
+
+Check that the original matrix is unchanged:
+
+>>> matrix = [[1, 2], [3, 4]]
+>>> result = matrix_divided(matrix, 2)
+>>> matrix
+[[1, 2], [3, 4]]
+>>> result is matrix
+False
+>>> result[0] is matrix[0]
+False
+
+Reject a matrix containing a string:
+
+>>> matrix_divided([[1, 2], [3, "hello"]], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Reject an argument that is not a matrix:
+
+>>> matrix_divided("hello", 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Reject a matrix containing a non-list row:
+
+>>> matrix_divided([[1, 2], (3, 4)], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Reject rows of different lengths:
+
+>>> matrix_divided([[1, 2, 3], [4, 5]], 2)
+Traceback (most recent call last):
+...
+TypeError: Each row of the matrix must have the same size
+
+Reject a non-numeric divisor:
+
+>>> matrix_divided([[1, 2]], "hello")
+Traceback (most recent call last):
+...
+TypeError: div must be a number
+
+Reject division by zero:
+
+>>> matrix_divided([[1, 2]], 0)
+Traceback (most recent call last):
+...
+ZeroDivisionError: division by zero
+
+Reject boolean values inside the matrix:
+
+>>> matrix_divided([[True, 2]], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Reject a boolean divisor:
+
+>>> matrix_divided([[1, 2]], True)
+Traceback (most recent call last):
+...
+TypeError: div must be a number
+
+Reject an empty matrix:
+
+>>> matrix_divided([], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Reject a matrix containing an empty row:
+
+>>> matrix_divided([[]], 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
