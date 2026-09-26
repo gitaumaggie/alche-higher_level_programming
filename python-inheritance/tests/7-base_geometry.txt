@@ -1,7 +1,6 @@
-
 Test the BaseGeometry class and its integer validator.
 
-First, create an instance:
+Create an instance of BaseGeometry:
 
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
     >>> bg = BaseGeometry()
@@ -15,17 +14,17 @@ Test the area method:
 
 Test integer_validator without arguments:
 
-    >>> bg.integer_validator()
+    >>> bg.integer_validator()  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
-    TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+    TypeError: ...integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
 Test integer_validator with only the name:
 
-    >>> bg.integer_validator("age")
+    >>> bg.integer_validator("age")  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
-    TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+    TypeError: ...integer_validator() missing 1 required positional argument: 'value'
 
 Test a valid positive integer:
 
