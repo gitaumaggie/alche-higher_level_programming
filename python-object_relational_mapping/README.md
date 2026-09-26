@@ -1,0 +1,4 @@
+ Python - Object-relational mapping
+
+This project explores how Python applications interact with relational databases using MySQLdb and SQLAlchemy. Through practical exercises, I will learn to establish database connections, retrieve records, insert data, and manage database operations using Python. The project introduces Object Relational Mapping, demonstrating how SQLAlchemy represents database tables as Python classes and records as objects. I will strengthen my understanding of SQL queries, database connectivity, object-oriented programming, and data persistence. By completing these tasks, I aim to develop reliable, maintainable applications that integrate Python with MySQL while following coding standards, documenting my work, and applying effective software development practices consistently.
+i
